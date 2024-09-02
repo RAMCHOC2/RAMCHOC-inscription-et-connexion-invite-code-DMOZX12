@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Équipe</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #007bff;
+        }
+        .team-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat {
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .stat:hover {
+            transform: scale(1.05);
+        }
+        .stat p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        .stat strong {
+            font-size: 22px;
+            color: #28a745;
+        }
+        .icon {
+            font-size: 40px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .parrainage-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .parrainage-code {
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            letter-spacing: 3px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .generate-button, .copy-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .generate-button:hover, .copy-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>mon équipe de ONLINE veuillez copier votre code de parrainage et faite votre choix       </h2>
+    <h2>Mon équipe</h6>
+    <div class="team-stats">
+        <div class="stat">
+            <div class="icon">👥</div>
+            <p>Total de l'équipe</p>
+            <p><strong>00</strong></p>
+        </div>
+        <div class="stat">
+            <div class="icon">💰</div>
+            <p>Total de recharge de l'équipe</p>
+            <p><strong>00 FCFA</strong></p>
+        </div>
+        <div class="stat">
+            <div class="icon">💼</div>
+            <p>Solde principal de l'équipe</p>
+            <p><strong>00 FCFA</strong></p>
+        </div>
+        <div class="stat">
+            <div class="icon">🏧</div>
+            <p>Retrait total de l'équipe</p>
+            <p><strong>00 FCFA</strong></p>
+        </div>
+    </div>
+
+    <div class="parrainage-section">
+        <p>Veuillez copier ce code de parrainage pour parrainer vos proches à investir dans notre communauté.</p>
+        <p>Niveau des bonus de parrainage</p>
+        <p>Niveau 1 30 %</p>
+        <p>Niveau 2 15 %</p>
+        <p>Niveau 3 10 %</p>
+        <div id="parrainageCode" class="parrainage-code">XXXXX</div><br>
+        <button id="generateButton" class="generate-button">Générer un nouveau code</button>
+        <button id="copyButton" class="copy-button">Copier le code</button>
+    </div>
+</div>
+
+<script>
+    function generateCode() {
+        const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let code = '';
+        for (let i = 0; i < 5; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            code += characters[randomIndex];
+        }
+        return code;
+    }
+
+    document.getElementById('generateButton').onclick = function() {
+        const newCode = generateCode();
+        document.getElementById('parrainageCode').textContent = newCode;
+    };
+
+    document.getElementById('copyButton').onclick = function() {
+        const codeText = document.getElementById('parrainageCode').textContent;
+        navigator.clipboard.writeText(codeText).then(function() {
+            alert('Code copié: ' + codeText);
+        }, function() {
+            alert('Échec de la copie du code.');
+        });
+    };
+
+    // Générer un code initialement au chargement de la page
+    document.getElementById('parrainageCode').textContent = generateCode();
+</script>
+
+</body>
+</html>
